@@ -151,3 +151,52 @@ create table EVENEMENT
 	DATE_EVENEMENT		   DATE			  not null,
 	constraint pk_evenement primary key (NUMERO_EVENEMENT)
 );
+
+
+-- =====================Liaisons====================
+
+alter table TAXE
+      add constraint fk1_taxe foreign key (NUMERO_ENTREPRISE)
+      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+
+alter table DESCRIPTION_ENTREPRISE
+      add constraint fk1_description_film foreign key (NUMERO_ENTREPRISE)
+      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+
+alter table DESCRIPTION_ENTREPRISE
+      add constraint fk2_description_film foreign key (NUMERO_GENRE)
+      	  references GENRE (NUMERO_GENRE);
+
+alter table DESCRIPTION_STAGE
+      add constraint fk1_description_stage foreign key (NUMERO_STAGE)
+      	  references STAGE (NUMERO_STAGE);
+
+alter table DESCRIPTION_STAGE
+      add constraint fk2_description_stage foreign key (NUMERO_TAG)
+      	  references TAG (NUMERO_TAG);
+
+alter table DESCRIPTION_STAGIAIRE
+      add constraint fk1_description_stagiaire foreign key (NUMERO_STAGE)
+      	  references STAGE (NUMERO_STAGE);
+
+alter table DESCRIPTION_STAGIAIRE
+      add constraint fk2_description_stagiaire foreign key (ID_STAGIAIRE)
+      	  references PERSONNE (ID_PERSONNE);
+
+alter table DESCRIPTION_CONTACT
+      add constraint fk1_description_contact foreign key (NUMERO_EVENEMENT)
+      	  references EVENEMENT (NUMERO_EVENEMENT);
+
+alter table DESCRIPTION_CONTACT
+      add constraint fk2_description_contact foreign key (NUMERO_ECOLE)
+      	  references ECOLE (NUMERO_ECOLE);
+
+alter table DESCRIPTION_CONTACT
+      add constraint fk3_description_contact foreign key (NUMERO_ENTREPRISE)
+      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+
+alter table DESCRIPTION_CONTACT
+      add constraint fk4_description_contact foreign key (ID_PERSONNE)
+      	  references PERSONNE (ID_PERSONNE);
+
+
