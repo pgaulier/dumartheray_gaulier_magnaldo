@@ -148,7 +148,7 @@ create table ECOLE
 	NUMERO_ECOLE               NUMBER(3)              not null,
 	NOM			   CHAR(20)		  not null,
 	TELEPHONE		   CHAR(20)		          ,
-	ADRESSE			   CHAR(20)			  ,
+	ADRESSE			   CHAR(50)			  ,
 	constraint pk_ecole primary key (NUMERO_ECOLE)
 );
 
