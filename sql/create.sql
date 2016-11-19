@@ -131,7 +131,7 @@ create table PERSONNE
 	NOM			   CHAR(20)		  not null,
 	PRENOM			   CHAR(20)		          ,
 	ADRESSE			   CHAR(20)			  ,
-	TELEPHONE		   NUMBER(20)			  ,
+	TELEPHONE		   CHAR(20)			  ,
 	MEL			   CHAR(40)			  ,
 	ANNEE_ETUDE		   NUMBER(1)			  ,
 	DEPARTEMENT		   CHAR(20)			  ,
@@ -147,7 +147,7 @@ create table ECOLE
 (
 	NUMERO_ECOLE               NUMBER(3)              not null,
 	NOM			   CHAR(20)		  not null,
-	TELEPHONE		   NUMBER(20)		          ,
+	TELEPHONE		   CHAR(20)		          ,
 	ADRESSE			   CHAR(20)			  ,
 	constraint pk_ecole primary key (NUMERO_ECOLE)
 );
