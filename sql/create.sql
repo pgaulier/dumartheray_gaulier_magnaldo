@@ -106,7 +106,6 @@ create table DESCRIPTION_STAGE
 create table TAG
 (
 	NUMERO_TAG                 NUMBER(3)              not null,
-	NUMERO_ENTREPRISE	   NUMBER(3)		  not null,
 	DESCRIPTION		   CHAR(20)		          ,
 	constraint pk_tag primary key (NUMERO_TAG)
 );
