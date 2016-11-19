@@ -29,7 +29,7 @@ insert into ENTREPRISE values (  2 , 'SELAHT'     , 'RUE SORTAC TNIASSUOT'      
 insert into ENTREPRISE values (  3 , 'GULLI'     , 'AVENUE DU FUN'       , 33000, 'DISNEYLAND', '666', 'www.tuveuxdufun.com', 42 )
 insert into ENTREPRISE values (  4 , 'BERNARD & CO'     , 'BOULEVARD DU TRAVAIL INTENSE'       , 42421, 'PAS A BORDEAUX', '3333333', 'www.randonnee.com', 11 )
 insert into ENTREPRISE values (  5 , 'FLEUR DE PLAISIR'     , 'MARCHE LA QUIZOUR'       , 33000, 'BORDEAUX', '335411120', 'www.FLEUR-PLAISIR.com', 9999 )
-
+commit ;
 
 
 -- DESCRIPTION_ENTREPRISE
@@ -40,13 +40,13 @@ insert into DESCRIPTION_ENTREPRISE values ( 3, 3 )
 insert into DESCRIPTION_ENTREPRISE values ( 4, 2 )
 insert into DESCRIPTION_ENTREPRISE values ( 5, 1 )
 
-
+commit ;
 -- GENRE
 
 insert into GENRE values (1, 'DEFENSE'  )
 insert into GENRE values (2, 'INTENSITE'  )
 insert into GENRE values (3, 'DETERMINATION'  )
-
+commit ;
 
 -- TAXE
 
@@ -59,7 +59,7 @@ insert into TAXE values  ( 5,3, 42, '01-JAN-12')
 insert into TAXE values  ( 6,4, 1, '01-JAN-14')
 insert into TAXE values  ( 7,5, 999, '01-JAN-23')
 insert into TAXE values  ( 8 ,5, 666,'01-JAN-65')
-
+commit ;
 
 --  STAGE
 insert into STAGE values (1, 1, 1, 'CREATION SONORE','01-JAN-23','01-JAN-24')
@@ -73,7 +73,7 @@ insert into STAGE values (8,4,5, 'RANDONNE DANS LES ALPES','01-JAN-23','01-JAN-2
 insert into STAGE values (9,5,6, 'ALGORITHME DE TAROT MENTAL','01-JAN-23','01-JAN-24')
 insert into STAGE values (10,5,7, 'CREATION D ARMES THERMONUCLEAIRE','01-JAN-23','01-JAN-24')
 
-
+commit ;
 
 
 -- DESCRIPTION_STAGE
@@ -88,7 +88,7 @@ insert into DESCRIPTION_STAGE values(4,7)
 insert into DESCRIPTION_STAGE values(3,8)
 insert into DESCRIPTION_STAGE values(2,9)
 insert into DESCRIPTION_STAGE values(2,10)
-
+commit ;
 -- TAG
 
 insert into TAG values(1,'java')
@@ -96,7 +96,7 @@ insert into TAG values(2,'c++')
 insert into TAG values(3,'fortran')
 insert into TAG values(4,'assembleur')
 
-
+commit ;
 -- DESCRITPTION_STAGIAURE
 
 
@@ -112,7 +112,7 @@ insert into DESCRIPTION_STAGIAIRE values(9,14)
 insert into DESCRIPTION_STAGIAIRE values(10,14)
 
 
-
+commit ;
 -- PERSONNE
 
 -- SUPERVISEUR
@@ -124,7 +124,7 @@ insert into PERSONNE values(5,4,1, 'ECTOPLASME', 'AROULETTE',null,null,null,null
 insert into PERSONNE values(6,5,1, 'BULLDOZER', 'AREACTION',null,null,null,null,null,null,'DIETETICIEN')
 insert into PERSONNE values(7,5,1, 'TCHOUCK', 'TCHOUCK-NOUGAT',null,null,null,null,null,null,'CHOCOPAIN')
 
-
+commit ;
 
 -- ELEVE
 
@@ -135,7 +135,7 @@ insert into PERSONNE values(11,null,1, 'LACASTAGNE', 'PROFESSEUR',null,null,null
 insert into PERSONNE values(12,null,1, 'LEADER', 'LE',null,null,null,2, 'INFO', 'I2',null)
 insert into PERSONNE values(13,null,1, 'RIPLEY', 'JEAN-GUY',null,null,null,2, 'MATMECA', 'M2',null)
 insert into PERSONNE values(14,null,1, 'BILLY', 'BILLY',null,null,null,2,'ELEC', 'E2',null)
-
+commit ;
 
 
 
@@ -144,13 +144,13 @@ insert into PERSONNE values(14,null,1, 'BILLY', 'BILLY',null,null,null,2,'ELEC',
 
 insert into PERSONNE values(1,1,1, 'TURFU', 'JEAN',null,null,null,null,null,null,'COORDINATEUR DES POMMES')
 
-
+commit ;
 
 -- ECOLE
 
 insert into ECOLE values(1,'ENSEIRB-MATMECA', '0556846500', 'AVENUE DU DR ALBERT SCHWEITZER')
 
-
+commit ;
 
 -- DESCRIPTION_CONTACT
 
