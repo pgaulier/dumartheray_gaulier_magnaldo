@@ -126,8 +126,8 @@ create table DESCRIPTION_STAGIAIRE
 create table PERSONNE
 (
 	ID_PERSONNE                NUMBER(3)              not null,
-	NUMERO_ENTREPRISE	   NUMBER(3)		  not null,
-	NUMERO_ECOLE		   NUMBER(3)		  not null,
+	NUMERO_ENTREPRISE	   NUMBER(3)			  ,
+	NUMERO_ECOLE		   NUMBER(3)		  	  ,
 	NOM			   CHAR(20)		  not null,
 	PRENOM			   CHAR(20)		          ,
 	ADRESSE			   CHAR(20)			  ,
