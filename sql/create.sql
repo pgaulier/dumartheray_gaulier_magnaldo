@@ -38,7 +38,7 @@ create table ENTREPRISE
 	ADRESSE			   CHAR(50)			  ,
 	CODE_POSTAL		   NUMBER(10)		 	  ,
 	VILLE_SIEGE		   CHAR(20)		 	  ,
-	TELEPHONE		   NUMBER(20)			  ,
+	TELEPHONE		   CHAR(20)			  ,
 	SITE_INTERNET		   CHAR(50)			  ,
 	NOMBRE_EMPLOYES		   NUMBER(5)			  ,
 	constraint pk_entreprise primary key (NUMERO_ENTREPRISE)
@@ -84,7 +84,7 @@ create table STAGE
 	NUMERO_STAGE	           NUMBER(3)              not null,
 	NUMERO_ENTREPRISE 	   NUMBER(3)		  not null,
 	ID_SUPERVISEUR		   NUMBER(3) 		  not null,
-	SUJET			   CHAR(20)		          ,
+	SUJET			   CHAR(50)		          ,
 	DATE_DEBUT		   DATE				  ,
 	DATE_FIN		   DATE				  ,
 	constraint pk_stage primary key (NUMERO_STAGE)
