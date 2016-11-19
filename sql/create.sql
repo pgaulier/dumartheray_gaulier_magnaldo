@@ -230,10 +230,6 @@ alter table STAGE
       add constraint fk2_stage foreign key (ID_SUPERVISEUR)
       	  references PERSONNE (ID_PERSONNE);
 
-alter table TAG
-      add constraint fk1_tag foreign key (NUMERO_ENTREPRISE)
-      	  references ENTREPRISE (NUMERO_ENTREPRISE);
-
 alter table PERSONNE
       add constraint fk1_personne foreign key (NUMERO_ENTREPRISE)
       	  references ENTREPRISE (NUMERO_ENTREPRISE);
