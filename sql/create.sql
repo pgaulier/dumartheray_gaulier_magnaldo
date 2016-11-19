@@ -4,6 +4,30 @@
 --   Date de creation :  18/11/2016  11:38
 -- =====================================================================
 
+drop table ENTREPRISE cascade constraints;
+
+drop table DESCRIPTION_ENTREPRISE cascade constraints;
+
+drop table GENRE cascade constraints;
+
+drop table TAXE cascade constraints;
+
+drop table STAGE cascade constraints;
+
+drop table DESCRIPTION_STAGE cascade constraints;
+
+drop table TAG cascade constraints;
+
+drop table DESCRIPTION_STAGIAIRE cascade constraints;
+
+drop table PERSONNE cascade constraints;
+
+drop table ECOLE cascade constraints;
+
+drop table DESCRIPTION_CONTACT cascade constraints;
+
+drop table EVENEMENT cascade constraints;
+
 -- =====================================================================
 --   Table : ENTREPRISE
 -- =====================================================================
@@ -69,7 +93,7 @@ create table STAGE
 -- =====================================================================
 --   Table : DESCRIPTION_STAGE
 -- =====================================================================
-create table DECRIPTION_STAGE
+create table DESCRIPTION_STAGE
 (
 	NUMERO_TAG                 NUMBER(3)              not null,
 	NUMERO_STAGE		   NUMBER(3)		  not null,
@@ -132,7 +156,7 @@ create table ECOLE
 -- ====================================================================
 --   Table : DESCRIPTION_CONTACT
 -- ====================================================================
-create table DESCRITPION_CONTACT
+create table DESCRIPTION_CONTACT
 (
 	NUMERO_EVENEMENT           NUMBER(3)              not null,
 	NUMERO_ECOLE		   NUMBER(3)		  not null,
@@ -199,4 +223,23 @@ alter table DESCRIPTION_CONTACT
       add constraint fk4_description_contact foreign key (ID_PERSONNE)
       	  references PERSONNE (ID_PERSONNE);
 
+alter table STAGE
+      add constraint fk1_stage foreign key (NUMERO_ENTREPRISE)
+      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+
+alter table STAGE
+      add constraint fk2_stage foreign key (ID_SUPERVISEUR)
+      	  references PERSONNE (ID_PERSONNE);
+
+alter table TAG
+      add constraint fk1_tag foreign key (NUMERO_ENTREPRISE)
+      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+
+alter table PERSONNE
+      add constraint fk1_personne foreign key (NUMERO_ENTREPRISE)
+      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+
+alter table PERSONNE
+      add constraint fk2_personne foreign key (NUMERO_ECOLE)
+      	  references ECOLE (NUMERO_ECOLE);
 
