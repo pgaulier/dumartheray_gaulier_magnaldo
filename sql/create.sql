@@ -4,30 +4,6 @@
 --   Date de creation :  18/11/2016  11:38
 -- =====================================================================
 
-drop table ENTREPRISE cascade constraints;
-
-drop table DESCRIPTION_ENTREPRISE cascade constraints;
-
-drop table GENRE cascade constraints;
-
-drop table TAXE cascade constraints;
-
-drop table STAGE cascade constraints;
-
-drop table DESCRIPTION_STAGE cascade constraints;
-
-drop table TAG cascade constraints;
-
-drop table DESCRIPTION_STAGIAIRE cascade constraints;
-
-drop table PERSONNE cascade constraints;
-
-drop table ECOLE cascade constraints;
-
-drop table DESCRIPTION_CONTACT cascade constraints;
-
-drop table EVENEMENT cascade constraints;
-
 -- =====================================================================
 --   Table : ENTREPRISE
 -- =====================================================================
@@ -83,7 +59,7 @@ create table STAGE
 (
 	NUMERO_STAGE	           NUMBER(3)              not null,
 	NUMERO_ENTREPRISE 	   NUMBER(3)		  not null,
-	ID_SUPERVISEUR		   NUMBER(3) 		  not null,
+	ID_CONTACT		   NUMBER(3) 		  not null,
 	SUJET			   CHAR(50)		          ,
 	DATE_DEBUT		   DATE				  ,
 	DATE_FIN		   DATE				  ,
@@ -116,8 +92,8 @@ create table TAG
 create table DESCRIPTION_STAGIAIRE
 (
 	NUMERO_STAGE               NUMBER(3)              not null,
-	ID_STAGIAIRE		   NUMBER(3) 		  not null,
-	constraint pk_description_stagiaire primary key (NUMERO_STAGE, ID_STAGIAIRE)
+	ID_ELEVE		   NUMBER(3) 		  not null,
+	constraint pk_description_stagiaire primary key (NUMERO_STAGE, ID_ELEVE)
 );
 
 -- =====================================================================
@@ -126,19 +102,58 @@ create table DESCRIPTION_STAGIAIRE
 create table PERSONNE
 (
 	ID_PERSONNE                NUMBER(3)              not null,
-	NUMERO_ENTREPRISE	   NUMBER(3)			  ,
-	NUMERO_ECOLE		   NUMBER(3)		  	  ,
 	NOM			   CHAR(20)		  not null,
 	PRENOM			   CHAR(20)		          ,
 	ADRESSE			   CHAR(20)			  ,
 	TELEPHONE		   CHAR(20)			  ,
 	MEL			   CHAR(40)			  ,
-	ANNEE_ETUDE		   NUMBER(1)			  ,
-	DEPARTEMENT		   CHAR(20)			  ,
-	PROMO			   CHAR(10)			  ,
-	FONCTION		   CHAR(20)			  ,
 	constraint pk_personne primary key (ID_PERSONNE)
 );
+
+-- =====================================================================
+--   Table : ELEVE
+-- =====================================================================
+create table ELEVE
+(
+	ID_ELEVE                   NUMBER(3)              not null,
+	NUMERO_ECOLE		   NUMBER(3)		  not null,
+	DEPARTEMENT		   CHAR(20)			  ,
+	ANNEE_ETUDE		   NUMBER(1)			  ,
+	PROMO			   CHAR(10)			  ,
+	constraint pk_eleve primary key (ID_ELEVE)
+);
+
+-- =====================================================================
+--   Table : CONTACT
+-- =====================================================================
+create table CONTACT
+(
+	ID_CONTACT                NUMBER(3)               not null,
+	NUMERO_EVENEMENT	  NUMBER(3)		          ,
+	FONCTION		  CHAR(20)			  ,
+	constraint pk_contact primary key (ID_CONTACT)
+);
+
+-- =====================================================================
+--   Table : DESCRIPTION_CONTACT
+-- =====================================================================
+create table DESCRIPTION_CONTACT
+(
+	NUMERO_ENTREPRISE          NUMBER(3)              not null,
+	ID_CONTACT		   NUMBER(3) 		  not null,
+	constraint pk_description_contact primary key (NUMERO_ENTREPRISE, ID_CONTACT)
+);
+
+-- =====================================================================
+--   Table : LIAISON_ECOLE
+-- =====================================================================
+create table LIAISON_ECOLE
+(
+	NUMERO_ECOLE          NUMBER(3)              not null,
+	ID_CONTACT		   NUMBER(3) 		  not null,
+	constraint pk_liaison_ecole primary key (NUMERO_ECOLE, ID_CONTACT)
+);
+
 
 -- ====================================================================
 --   Table : ECOLE
@@ -150,18 +165,6 @@ create table ECOLE
 	TELEPHONE		   CHAR(20)		          ,
 	ADRESSE			   CHAR(50)			  ,
 	constraint pk_ecole primary key (NUMERO_ECOLE)
-);
-
--- ====================================================================
---   Table : DESCRIPTION_CONTACT
--- ====================================================================
-create table DESCRIPTION_CONTACT
-(
-	NUMERO_EVENEMENT           NUMBER(3)              not null,
-	NUMERO_ECOLE		   NUMBER(3)		  not null,
-	NUMERO_ENTREPRISE	   NUMBER(3)		  not null,
-	ID_PERSONNE		   NUMBER(3)		  not null,
-	constraint pk_description_contact primary key (NUMERO_EVENEMENT, NUMERO_ECOLE, NUMERO_ENTREPRISE, ID_PERSONNE)
 );
 
 -- ====================================================================
@@ -203,38 +206,47 @@ alter table DESCRIPTION_STAGIAIRE
       	  references STAGE (NUMERO_STAGE);
 
 alter table DESCRIPTION_STAGIAIRE
-      add constraint fk2_description_stagiaire foreign key (ID_STAGIAIRE)
+      add constraint fk2_description_stagiaire foreign key (ID_ELEVE)
+      	  references ELEVE (ID_ELEVE);
+
+alter table ELEVE
+      add constraint fk1_eleve foreign key (ID_ELEVE)
       	  references PERSONNE (ID_PERSONNE);
 
-alter table DESCRIPTION_CONTACT
-      add constraint fk1_description_contact foreign key (NUMERO_EVENEMENT)
+alter table ELEVE
+      add constraint fk2_eleve foreign key (NUMERO_ECOLE)
+      	  references ECOLE (NUMERO_ECOLE);
+
+alter table CONTACT
+      add constraint fk1_contact foreign key (ID_CONTACT)
+      	  references PERSONNE (ID_PERSONNE);
+
+alter table CONTACT
+      add constraint fk2_contact foreign key (NUMERO_EVENEMENT)
       	  references EVENEMENT (NUMERO_EVENEMENT);
 
-alter table DESCRIPTION_CONTACT
-      add constraint fk2_description_contact foreign key (NUMERO_ECOLE)
+alter table LIAISON_ECOLE
+      add constraint fk1_liaison_ecole foreign key (ID_CONTACT)
+      	  references CONTACT (ID_CONTACT);
+
+alter table LIAISON_ECOLE
+      add constraint fk2_liaison_ecole foreign key (NUMERO_ECOLE)
       	  references ECOLE (NUMERO_ECOLE);
 
 alter table DESCRIPTION_CONTACT
-      add constraint fk3_description_contact foreign key (NUMERO_ENTREPRISE)
+      add constraint fk1_description_contact foreign key (NUMERO_ENTREPRISE)
       	  references ENTREPRISE (NUMERO_ENTREPRISE);
 
 alter table DESCRIPTION_CONTACT
-      add constraint fk4_description_contact foreign key (ID_PERSONNE)
-      	  references PERSONNE (ID_PERSONNE);
+      add constraint fk2_description_contact foreign key (ID_CONTACT)
+      	  references CONTACT (ID_CONTACT);
 
 alter table STAGE
-      add constraint fk1_stage foreign key (NUMERO_ENTREPRISE)
-      	  references ENTREPRISE (NUMERO_ENTREPRISE);
+      add constraint fk1_stage foreign key (ID_CONTACT)
+      	  references CONTACT (ID_CONTACT);
 
-alter table STAGE
-      add constraint fk2_stage foreign key (ID_SUPERVISEUR)
-      	  references PERSONNE (ID_PERSONNE);
 
-alter table PERSONNE
-      add constraint fk1_personne foreign key (NUMERO_ENTREPRISE)
-      	  references ENTREPRISE (NUMERO_ENTREPRISE);
 
-alter table PERSONNE
-      add constraint fk2_personne foreign key (NUMERO_ECOLE)
-      	  references ECOLE (NUMERO_ECOLE);
+
+
 
