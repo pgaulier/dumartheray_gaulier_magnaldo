@@ -186,11 +186,11 @@ alter table TAXE
       	  references ENTREPRISE (NUMERO_ENTREPRISE);
 
 alter table DESCRIPTION_ENTREPRISE
-      add constraint fk1_description_film foreign key (NUMERO_ENTREPRISE)
+      add constraint fk1_description_entreprise foreign key (NUMERO_ENTREPRISE)
       	  references ENTREPRISE (NUMERO_ENTREPRISE);
 
 alter table DESCRIPTION_ENTREPRISE
-      add constraint fk2_description_film foreign key (NUMERO_GENRE)
+      add constraint fk2_description_entreprise foreign key (NUMERO_GENRE)
       	  references GENRE (NUMERO_GENRE);
 
 alter table DESCRIPTION_STAGE
