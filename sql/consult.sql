@@ -24,7 +24,7 @@ group by EN.NOM_ENTREPRISE
 order by TAXES_PAYEES desc;
 
 
-
+-- Truc pénible.
 
 
 select P.NOM          
@@ -37,3 +37,31 @@ from (TAG T inner join DESCRIPTION_STAGE DS on DS.NUMERO_TAG = T.NUMERO_TAG) inn
 
 
 select DATEDIFF(STAGE.DEBUT, STAGE.FIN) from STAGE;
+
+
+
+-- Requêtes mignonnes :
+
+-- 	    Entreprise :
+
+select * from ENTREPRISE;
+
+--     	    Contact :
+
+select *
+   from PERSONNE P inner join CONTACT C on P.ID_PERSONNE=C.ID_CONTACT;
+
+--     	    Elèves :
+
+select *          
+   from PERSONNE P inner join ELEVE E on P.ID_PERSONNE=E.ID_ELEVE;
+
+--          Ecoles :
+
+select * from ECOLE;
+
+--          Stages :
+
+select * from STAGE;
+
+
