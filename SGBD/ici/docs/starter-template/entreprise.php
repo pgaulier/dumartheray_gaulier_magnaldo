@@ -46,5 +46,33 @@
 		
 	</table>
 
+
+<?php
+//formulaire d'ajout
+
+$rep=mysql_query("select * from GENRE");
+?>
+<form action="entreprise_ajout.php" method="post">
+ <p>Nom de l'entreprise : <input type="text" name="nom" /></p>
+ 
+ <p> Genre de l'entreprise :<select name="genre">
+	<?php 
+	
+	while ($don = mysql_fetch_assoc($rep)){
+	echo "<option value='".$don['NUMERO_GENRE']."'>'".$don['TYPE_GENRE']."'</option>\n";
+	}
+   ?>
+   </select>
+</p>
+ <p>Adresse de l'entreprise : <input type="text" name="adresse" /></p>
+ <p>Code postal : <input type="text" name="code" /></p>
+ <p>Ville : <input type="text" name="ville" /></p>
+ <p>Téléphone : <input type="text" name="tel" /></p>
+ <p>Site internet : <input type="text" name="site" /></p>
+ <p>Nombre d'employés : <input type="text" name="nbr" /></p>
+ <p><input type="submit" value="OK"></p>
+</form>
 </html>	
+
+
 
