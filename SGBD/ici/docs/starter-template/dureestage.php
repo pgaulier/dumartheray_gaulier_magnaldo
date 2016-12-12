@@ -11,7 +11,7 @@
 
 	mysql_connect("localhost", "pmagnaldo", "nire40ji");
 	mysql_select_db("pmagnaldo");
-	$req = mysql_query("select E.DEPARTEMENT, avg(S.DATE_FIN-S.DATE_DEBUT) as DUREE_MOYENNE_JOURS
+	$req = mysql_query("select E.DEPARTEMENT, avg(DATEDIFF(S.DATE_FIN,S.DATE_DEBUT)) as DUREE_MOYENNE_JOURS
 	from (ELEVE E inner join DESCRIPTION_STAGIAIRE DS on DS.ID_ELEVE=E.ID_ELEVE) inner join STAGE S on DS.NUMERO_STAGE=S.NUMERO_STAGE
 	group by E.DEPARTEMENT;");
 	

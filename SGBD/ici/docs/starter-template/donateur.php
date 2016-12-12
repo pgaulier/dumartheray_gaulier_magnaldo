@@ -12,8 +12,8 @@
 	mysql_connect("localhost", "pmagnaldo", "nire40ji");
 	mysql_select_db("pmagnaldo");
 	$req = mysql_query("select EN.NOM_ENTREPRISE, sum(T.MONTANT) as TAXES_PAYEES
-	from ENTREPRISE EN inner join TAXE T on EN.NUMERO_ENTREPRISE=T.NUMERO_TAXE
-	group by EN.NOM_ENTREPRISE 
+	from ENTREPRISE EN inner join TAXE T on EN.NUMERO_ENTREPRISE=T.NUMERO_ENTREPRISE
+	group by EN.NUMERO_ENTREPRISE
 	order by TAXES_PAYEES desc;");
 	
 

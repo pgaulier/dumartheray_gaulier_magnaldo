@@ -48,3 +48,24 @@
 
 </html>	
 
+<?php
+//formulaire d'ajout
+
+$rep=mysql_query("select * from ENTREPRISE");
+?>
+<form action="taxe_ajout.php" method="post">
+ <p>Montant : <input type="text" name="montant" /></p>
+ 
+ <p> Entreprise :<select name="nom">
+	<?php 
+	
+	while ($don = mysql_fetch_assoc($rep)){
+	echo "<option value='".$don['NUMERO_ENTREPRISE']."'>'".$don['NOM_ENTREPRISE']."'</option>\n";
+	}
+   ?>
+   </select>
+</p>
+ <p>Année versement : <input type="text" name="annee" /></p>
+ <p><input type="submit" value="OK"></p>
+</form>
+</html>	
